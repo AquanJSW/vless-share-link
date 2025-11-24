@@ -5,7 +5,7 @@ import sys
 
 import yaml
 
-from vless_share_link import build
+from . import build
 
 SPIDER_LEN = 8
 

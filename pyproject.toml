@@ -1,6 +1,6 @@
 [project]
 name = "vless_share_link"
-version = "0.2.0"
+version = "0.2.2"
 authors = [
     { name="Shin Rag", email="zhdlcc@gmail.com" },
 ]
@@ -18,7 +18,7 @@ license = "MIT"
 license-files = ["LICENSE"]
 
 [project.scripts]
-convert = "convert.cli:main"
+vless-convert = "vless_share_link.cli:main"
 
 [project.urls]
 Homepage = "https://github.com/AquanJSW/vless-share-link"
