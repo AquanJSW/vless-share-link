@@ -1,0 +1,25 @@
+[project]
+name = "vless_share_link"
+version = "0.1.0"
+authors = [
+    { name="Shin Rag", email="zhdlcc@gmail.com" },
+]
+description = "Generate VLESS/VMess share links from XRay configuration."
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyyaml>=6.0.3",
+]
+classifiers = [
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.scripts]
+convert = "convert.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.9.11,<0.10.0"]
+build-backend = "uv_build"
