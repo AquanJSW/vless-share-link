@@ -1,12 +1,8 @@
-_SPIDER_LEN = 8
-
-
 def build(outbound_obj: dict, desc: str = ''):
     """Build a share URL from the outbound object and description.
 
     Reference: https://github.com/XTLS/Xray-core/discussions/716
     """
-    import secrets
     from urllib.parse import quote
 
     i = outbound_obj
@@ -36,7 +32,7 @@ def build(outbound_obj: dict, desc: str = ''):
             params['fp'] = i['streamSettings']['realitySettings']['fingerprint']
             params['sni'] = quote(i['streamSettings']['realitySettings']['serverName'])
             params['pbk'] = quote(i['streamSettings']['realitySettings']['publicKey'])
-            params['spx'] = quote('/' + secrets.token_urlsafe(_SPIDER_LEN))
+            params['spx'] = quote(i['streamSettings']['realitySettings'].get('spiderX', ''))
         case _:
             raise NotImplementedError(f'Unsupported security: {params["security"]}')
 

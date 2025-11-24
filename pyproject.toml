@@ -1,6 +1,6 @@
 [project]
 name = "vless_share_link"
-version = "0.1.0"
+version = "0.2.0"
 authors = [
     { name="Shin Rag", email="zhdlcc@gmail.com" },
 ]
@@ -19,6 +19,9 @@ license-files = ["LICENSE"]
 
 [project.scripts]
 convert = "convert.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/AquanJSW/vless-share-link"
 
 [build-system]
 requires = ["uv_build>=0.9.11,<0.10.0"]
