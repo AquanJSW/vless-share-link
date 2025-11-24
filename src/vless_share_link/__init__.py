@@ -32,7 +32,9 @@ def build(outbound_obj: dict, desc: str = ''):
             params['fp'] = i['streamSettings']['realitySettings']['fingerprint']
             params['sni'] = quote(i['streamSettings']['realitySettings']['serverName'])
             params['pbk'] = quote(i['streamSettings']['realitySettings']['publicKey'])
-            params['spx'] = quote(i['streamSettings']['realitySettings'].get('spiderX', ''))
+            params['spx'] = quote(
+                i['streamSettings']['realitySettings'].get('spiderX', '')
+            )
         case _:
             raise NotImplementedError(f'Unsupported security: {params["security"]}')
 
@@ -40,3 +42,19 @@ def build(outbound_obj: dict, desc: str = ''):
     params_str = '&'.join(f'{k}={v}' for k, v in params.items() if v is not None)
     share_url = f'{base_url}?{params_str}#{descriptive_text}'
     return share_url
+
+
+_SPIDER_LEN = 8
+
+
+def confuse(conf: dict):
+    import secrets
+
+    try:
+        conf['outbounds'][0]['streamSettings']['realitySettings']['spiderX'] = (
+            '/' + secrets.token_urlsafe(_SPIDER_LEN)
+        )
+    except KeyError:
+        pass
+
+    return conf

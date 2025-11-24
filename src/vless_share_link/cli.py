@@ -1,13 +1,10 @@
 import argparse
 import json
-import secrets
 import sys
 
 import yaml
 
-from . import build
-
-SPIDER_LEN = 8
+from . import build, confuse
 
 parser = argparse.ArgumentParser(
     description="Convert XRay configuration to share link."
@@ -46,12 +43,7 @@ def main():
         case _:
             raise NotImplementedError(f'Unsupported config format: {ext}')
 
-    try:
-        conf['outbounds'][0]['streamSettings']['realitySettings']['spiderX'] = (
-            '/' + secrets.token_urlsafe(SPIDER_LEN)
-        )
-    except KeyError:
-        pass
+    conf = confuse(conf)
 
     match args.to:
         case 'l':
